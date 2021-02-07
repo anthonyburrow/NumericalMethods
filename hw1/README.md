@@ -18,3 +18,13 @@ From the root directory, run the executable with `./bin/myquadratic.exe`.
 In Windows, you must run this from the root directory, because relative paths
 are difficult in C++ for some reason, and I believe this is a compiler/OS
 issue.
+
+## Elements
+
+* `./config/` : Contains parameter information.
+
+* `./bin/` : Created upon `make`. Contains binaries/executables (the program).
+
+* `./doc/` : Contains results and the description of the assignment.
+
+* `./src/` : The source code.
