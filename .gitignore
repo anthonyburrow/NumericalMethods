@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# ETC
+*.tar.gz
+
+*/doc/*.aux
+*/doc/*.log
+*/doc/*.synctex.gz
+*/doc/*.blg
+*/doc/*.bbl
+*/doc/*.out
+
+/.vscode/
