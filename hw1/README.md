@@ -13,11 +13,12 @@ To change the equation for which a solution may be found, alter the
 be entered (separated by spaces, from highest to lowest order). This file is
 read during runtime, so you don't have to recompile when changing equations.
 
-From the root directory, run the executable with `./bin/myquadratic.exe`.
+From the *root* directory, run the executable with `./bin/myquadratic`.
 
-In Windows, you must run this from the root directory, because relative paths
-are difficult in C++ for some reason, and I believe this is a compiler/OS
-issue.
+Unfortunately the executable can't be run from anywhere, because of reading
+the "./configs/params" file. This is because the compilers don't seem to like
+`<filesystem>`, so I can't get an absolute path, and C++ doesn't use relative
+paths from the executable, but rather where the executable is run.
 
 ## Elements
 
