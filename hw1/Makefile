@@ -1,4 +1,4 @@
-CXX = g++
+CXX = icpc
 
 BIN_DIR = ./bin
 SRC_DIR = ./src
@@ -17,7 +17,7 @@ $(TARGET): $(OBJ_LIST)
 
 # Because "main" cpp does not have a header file
 $(TARGET).o: $(SRC_DIR)/myquadratic.cpp
-	mkdir $(@D)
+	mkdir -p $(@D)
 	$(CXX) -c $(SRC_DIR)/myquadratic.cpp -o $(TARGET).o
 
 # Compile all other objects objects
@@ -25,4 +25,4 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.hpp
 	$(CXX) -c $< -o $@
 
 clean:
-	$(RM) $(BIN_DIR)/*.o $(TARGET).exe
+	$(RM) $(BIN_DIR)/*.o $(TARGET)

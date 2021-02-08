@@ -1,13 +1,12 @@
 #include <iostream>
 #include <limits>
+#include <cmath>
+#include <stdlib.h>
 
 #include "quadratic.hpp"
 #include "io.hpp"
 
 int main(int argc, char* argv[]) {
-    // fs::path exe_path = argv[0];
-    // fs::path root_dir = exe_path.parent_path().parent_path();
-    // std::cout << "root_dir: " << root_dir << std::endl;
     const std::string filename = "./config/params";
     mylib::quad_params params = mylib::read_params(filename);
 
@@ -25,7 +24,8 @@ int main(int argc, char* argv[]) {
     }
 
     // Output answer to console
-    const int n_digits = std::numeric_limits<double>::max_digits10;
+    // const int n_digits = std::numeric_limits<double>::max_digits10;
+    const int n_digits = std::ceil(std::numeric_limits<double>::digits * std::log10(2) + 1);
     std::cout.precision(n_digits);
 
     std::cout << "Standard calculation:" << std::endl;
