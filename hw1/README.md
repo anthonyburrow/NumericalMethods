@@ -5,7 +5,8 @@
 ### Problem 1: "./bin/myquadratic_single"
 
 The executable for this single-implementation executable can be compiled in the
-*root* directory with just `g++ ./src/myquadratic_single -o ./bin/myquadratic_single`.
+*root* directory with just
+`mkdir ./bin ; g++ ./src/myquadratic_single.cpp -o ./bin/myquadratic_single`.
 
 ### Problems 2-4: "./bin/myquadratic"
 
@@ -16,9 +17,10 @@ as well as the final executable, "./bin/myquadratic".
 ## Running the code
 
 To change the equation for which a solution may be found, alter the
-"./config/params" file. On the third line of this file, the coefficients are to
-be entered (separated by spaces, from highest to lowest order). This file is
-read during runtime, so you don't have to recompile when changing equations.
+"./config/params" file. This same file is used for both executables. On the
+third line of this file, the coefficients are to be entered (separated by spaces,
+from highest to lowest order). This file is read during runtime, so you don't
+have to recompile when changing equations.
 
 From the *root* directory, run the executable with either `./bin/myquadratic_single`
 or `./bin/myquadratic`.

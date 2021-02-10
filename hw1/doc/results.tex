@@ -28,33 +28,37 @@ $x^2 - 1 = 0$ (\texttt{a=1}, \texttt{b=0}, \texttt{c=-1}), and the output of
 the program is as expected:
 \begin{verbatim}
 Reading from parameter file: ./config/params
+Attempting to solve equation 1x^2 + 0x + -1 = 0
 Standard calculation:
 -1  1
 Accurate calculation:
 -1  1
 \end{verbatim}
 
-I also tested the equation $3x^2 + x - 6 = 0$, and the solutions are given to
+I also tested the equation $3.2x^2 + x - 6.5 = 0$, and the solutions are given to
 \texttt{double} precision:
 \begin{verbatim}
 Reading from parameter file: ./config/params
+Attempting to solve equation 3.2x^2 + 1x + -6.5 = 0
 Standard calculation:
--1.5906672908862551  1.2573339575529217
+-1.5900087183693077  1.2775087183693077
 Accurate calculation:
--1.5906672908862551  1.2573339575529219
+-1.5900087183693077  1.2775087183693079
 \end{verbatim}
 
 \section*{Problem 2}
 
-When writing the code, I placed the quadratic solver in its own
-implementation/header, and one may \texttt{include} this functionality as a
-subroutine, etc. in another file with an \texttt{\#include "quadratic.hpp"}.
+I've placed the quadratic solver in its own implementation/header ("quadratic.cpp/hpp"),
+and one may \texttt{include} this functionality as a subroutine, etc. in another
+file with an \texttt{\#include "quadratic.hpp"}. This has been done in the second main
+implementation "myquadratic.cpp".
 
 \section*{Problem 3}
 
 I have written the Makefile for this program, which compiles each object and
 links them to create the executable file. To compile this program, one may just
-run \texttt{make}.
+run \texttt{make}. This creates the "myquadratic" executable, and it does the
+exact same thing as before, but it allows more flexibility in writing the code.
 
 \section*{Problem 4}
 
@@ -71,12 +75,13 @@ exception to be thrown if an imaginary solution arises. The output from my
 program to such an equation provided gives:
 \begin{verbatim}
 Reading from parameter file: ./config/params
+Attempting to solve equation 1x^2 + 0x + 1 = 0
 Error: Imaginary value(s) encountered in solution.
 \end{verbatim}
 
 One may also incorporate complex number functionality if available.
 \texttt{complex} objects are available in \texttt{std::complex} for C++, for
-example. These of course require double the amount of memory, though.
+example. These of course require over double the amount of memory, though.
 
 \subsection*{(b)}
 
@@ -84,10 +89,11 @@ With the extreme equation $x^2 - 200000x + 1 = 0$, my program outputs the
 following:
 \begin{verbatim}
 Reading from parameter file: ./config/params
+Attempting to solve equation 1x^2 + -200000x + 1 = 0
 Standard calculation:
-4.9999944167211652e-006  199999.99999500002
+4.9999944167211652e-06  199999.99999500002
 Accurate calculation:
-199999.99999500002  5.0000000001249996e-006
+199999.99999500002  5.0000000001249996e-06
 \end{verbatim}
 One of the solutions is slightly different from the other (albeit still close
 to somewhat high precision). As was mentioned, the standard calculation uses
