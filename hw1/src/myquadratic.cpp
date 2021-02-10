@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include <cmath>
+// #include <cmath>
 #include <stdlib.h>
 
 #include "quadratic.hpp"
@@ -14,6 +14,9 @@ int main(int argc, char* argv[]) {
     mylib::quad_solution standard_x;
     mylib::quad_solution accurate_x;
 
+    std::cout << "Attempting to solve equation " << params.a << "x^2 + "
+              << params.b << "x + " << params.c << " = 0" << std::endl;
+
     try {
         standard_x = mylib::solve_quadratic(params, 0);
         accurate_x = mylib::solve_quadratic(params, 1);
@@ -24,8 +27,8 @@ int main(int argc, char* argv[]) {
     }
 
     // Output answer to console
-    // const int n_digits = std::numeric_limits<double>::max_digits10;
-    const int n_digits = std::ceil(std::numeric_limits<double>::digits * std::log10(2) + 1);
+    const int n_digits = std::numeric_limits<double>::max_digits10;
+    // const int n_digits = std::ceil(std::numeric_limits<double>::digits * std::log10(2) + 1);
     std::cout.precision(n_digits);
 
     std::cout << "Standard calculation:" << std::endl;

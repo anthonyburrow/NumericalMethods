@@ -70,8 +70,6 @@ namespace mylib {
         const double c1 = 0.5 * b / a;
         const double c2 = c / a;
 
-        // Return either the standard solution or
-        // accurate (no subtraction) solution
         if (accurate) { return solve_accurate(c1, c2); }
         else { return solve_standard(c1, c2); }
     }
