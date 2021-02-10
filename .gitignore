@@ -1,7 +1,5 @@
 # Executables
-*/bin/*.exe
-*/bin/*.o
-!*/bin/
+*/bin/*
 
 # LaTeX
 */doc/*.aux

@@ -1,4 +1,4 @@
-CXX = icpc
+CXX = g++
 
 BIN_DIR = ./bin
 SRC_DIR = ./src
