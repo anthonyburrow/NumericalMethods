@@ -39,9 +39,13 @@ vector<vector<double>> myInvJacobian(const vector<double> &X) {
 
 int main(int argc, char* argv[]) {
 
-    vector<double> X0 = {0, 0};
+    vector<double> root;
+    vector<double> X0(2);
+    X0 = {0.1, 1};
 
-    mylib::findRoot(myFunc, myInvJacobian, X0);
+    root = mylib::findRoot(myFunc, myInvJacobian, X0);
+
+    cout << "root: " << root[0] << ", " << root[1] << endl;
 
     return 0;
 }
