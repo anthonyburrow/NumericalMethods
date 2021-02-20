@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <limits>
 
 #include "rootsolve.hpp"
 
@@ -41,9 +42,12 @@ int main(int argc, char* argv[]) {
 
     vector<double> root;
     vector<double> X0(2);
-    X0 = {0.1, 1};
+    X0 = {-2, 2};
 
     root = mylib::findRoot(myFunc, myInvJacobian, X0);
+
+    const int n_digits = numeric_limits<double>::max_digits10;
+    cout.precision(n_digits);
 
     cout << "root: " << root[0] << ", " << root[1] << endl;
 
