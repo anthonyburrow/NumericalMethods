@@ -39,7 +39,7 @@ namespace mylib {
 
         vector<double> X(2);
 
-        cout << "Solving for the root..." << endl;
+        cout << "Solving for function root with X0 = [" << X0[0] << ", " << X0[1] << "]..." << endl;
 
         const int max_iter = 100;
         int count = 0;

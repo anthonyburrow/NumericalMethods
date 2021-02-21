@@ -6,7 +6,7 @@ SRC_DIR = ./src
 NAME = myroot
 TARGET = $(BIN_DIR)/$(NAME)
 
-SRC = $(NAME) rootsolve
+SRC = $(NAME) rootsolve io
 SRC_LIST = $(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJ = $(addsuffix .o, $(SRC))

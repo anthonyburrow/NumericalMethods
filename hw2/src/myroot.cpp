@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <cmath>
 #include <limits>
 
 #include "rootsolve.hpp"
+#include "io.hpp"
 
 using namespace std;
 
@@ -40,8 +42,10 @@ vector<vector<double>> myInvJacobian(const vector<double> &X) {
 
 int main(int argc, char* argv[]) {
     vector<double> root(2);
+
     vector<double> X0(2);
-    X0 = {-2, 2};
+    const std::string filename = "./config/params";
+    X0 = mylib::read_params(filename);
 
     root = mylib::findRoot(myFunc, myInvJacobian, X0);
 
