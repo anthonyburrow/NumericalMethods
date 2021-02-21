@@ -13,6 +13,7 @@
 * bzip2/1.0.8-GCCcore-9.3.0
 * cURL/7.69.1-GCCcore-9.3.0
 * CMake/3.16.4-GCCcore-9.3.0
+* python/anaconda3
 
 ## Compiling the code
 

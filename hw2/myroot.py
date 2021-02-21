@@ -20,8 +20,9 @@ def main():
     root2 = fsolve(myFunc, X0)
 
     print('Python roots:')
-    roots = (f'{root1[0]:.17f}, {root1[1]:.17f}\n'
-             f'{root2[0]:.16f}, {root2[1]:.16f}')
+    # schooner doesn't like f-strings for some reason...
+    roots = '{r1:.17f}, {r2:.17f}\n'.format(r1 = root1[0], r2 = root1[1])
+    roots += '{r1:.17f}, {r2:.17f}'.format(r1 = root2[0], r2 = root2[1])
 
     print(roots)
 

@@ -43,12 +43,23 @@ vector<vector<double>> myInvJacobian(const vector<double> &X) {
 int main(int argc, char* argv[]) {
     vector<double> root(2);
 
+    // Read initial guess
     vector<double> X0(2);
     const std::string filename = "./config/params";
     X0 = mylib::read_params(filename);
 
+    // Check for uninvertible Jacobian (x = y)
+    const double eps = std::numeric_limits<double>::epsilon();
+    if (abs(X0[0] - X0[1]) < eps) {
+        cout << "Components that are equal lead to uninvertible Jacobian. " <<
+                "Setting y = " << X0[1] << " + 0.1" << endl;
+        X0[1] += 0.1;
+    }
+
+    // Solve root
     root = mylib::findRoot(myFunc, myInvJacobian, X0);
 
+    // Print results
     const int n_digits = numeric_limits<double>::max_digits10;
     cout.precision(n_digits);
 
