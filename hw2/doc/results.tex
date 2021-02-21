@@ -8,6 +8,7 @@
 \usepackage{amsmath, amssymb}
 
 \usepackage{graphicx}
+\usepackage{float}
 \graphicspath{{./figs/}}
 
 \begin{document}
@@ -71,7 +72,7 @@ I've written this program to solve the system of equations, which is the
 attached ``./bin/myroot". This should compile with \texttt{make} as shown
 below.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{compile}
     \label{fig:compile}
@@ -109,51 +110,59 @@ basic testing. This is because in the iteration step, if $\boldsymbol{x}_0$ is
 not on the same scale as outputs to the periodic $\sin$ and $\cos$ functions,
 it attempts to overcorrect and fails to converge to a single result.
 
-In addition, there are 4 roots that this program finds with initial conditions
+In addition, there are 2 roots that this program finds with initial conditions
 within these bounds. With $\boldsymbol{x}_0 = (-1, 1)^\mathsf{T}$ for example,
 where $|x|, |y| < \pi / 2$, the program yields two roots which are effectively
-$\pi/4$ and $-\pi/4$:
-\begin{verbatim}
-Solving for the root...
--0.77117122281985706, 0.77117122281985706
--0.78540200412904826, 0.78540200412904826
--0.78539816339744828, 0.78539816339744828
--0.78539816339744828, 0.78539816339744828
-Found root with 4 iterations
-root: -0.78539816339744828, 0.78539816339744828
-\end{verbatim}
-And when $\pi / 2 < |x|, |y| < \pi$, where in this case $\boldsymbol{x}_0 =
-(-2, 2)^\mathsf{T}$, the other two roots ($\sim 3\pi/4$ and $-3\pi/4$) are
+$x=\pi/4$ and $y=-\pi/4$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{root1}
+    \label{fig:root1}
+\end{figure}
+When $\pi / 2 < |x|, |y| < \pi$, where in this case $\boldsymbol{x}_0 =
+(-2, 2)^\mathsf{T}$, the other two roots ($x=3\pi/4$ and $y=-3\pi/4$) are
 found:
-\begin{verbatim}
-Solving for the root...
--2.4318455772253085, 2.4318455772253085
--2.3556118776621502, 2.3556118776621502
--2.3561944904560255, 2.3561944904560255
--2.3561944901923448, 2.3561944901923448
--2.3561944901923448, 2.3561944901923448
-Found root with 5 iterations
-root: -2.3561944901923448, 2.3561944901923448
-\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{root2}
+    \label{fig:root2}
+\end{figure}
 
+Numerically, we find these roots to be
+$$
+\begin{aligned}
+\begin{pmatrix}
+-0.78539816339744828 \\ 0.78539816339744828
+\end{pmatrix}
+\end{aligned}
+$$
+and
+$$
+\begin{aligned}
+\begin{pmatrix}
+-2.3561944901923448 \\ 2.3561944901923448
+\end{pmatrix}.
+\end{aligned}
+$$
 Each estimate of the root is shown, and a final value is reached when the
 difference between the new and old estimates are machine zero.
 
 \subsection*{(b)}
 
-I solved this problem in Python as well, using SciPy's
+I solved this problem in Python as well (``./myroot.py''), using SciPy's
 \texttt{scipy.optimize.fsolve} function. Using the same two sets of initial
 conditions, it was able to solve the same roots to the same (double) precision:
-\begin{verbatim}
--0.78539816339744828, 0.78539816339744828
--2.3561944901923448, 2.3561944901923448
-\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{python}
+    \label{fig:python}
+\end{figure}
 
 Typically Python can be used to perform the same calculations for these simple
 problems (as we saw, it only takes ~5 iterations to find a decent result). This
 is true especially when you are able to vectorize the problem so that one may
-take advantage of Numpy's C-based functionality. However its flexibility makes
-it quite burdensome to perform heavy calculations with more complicated
+take advantage of Numpy's C-optimized functionality. However its flexibility
+makes it quite burdensome to perform heavy calculations with more complicated
 problems.
 
 \end{document}

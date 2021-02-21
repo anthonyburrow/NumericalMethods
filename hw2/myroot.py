@@ -19,6 +19,7 @@ def main():
     X0 = np.array([-2, 2], dtype=np.double)
     root2 = fsolve(myFunc, X0)
 
+    print('Python roots:')
     roots = (f'{root1[0]:.17f}, {root1[1]:.17f}\n'
              f'{root2[0]:.16f}, {root2[1]:.16f}')
 
