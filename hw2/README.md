@@ -33,14 +33,18 @@ From the *root* directory of the files given, run the executable with
 
 Unfortunately the executable can't be run from anywhere, because of reading
 the "./configs/params" file. This is because the compilers don't seem to like
-`<filesystem>`, so I can't get an absolute path, and C++ doesn't use relative
-paths from the executable, but rather where the executable is run.
+to `#include <filesystem>`, so I can't get an absolute path, and C++ doesn't
+use relative paths from the executable, but rather the current working
+directory.
+
+The Python version "./myroot.py" may be run with just `python myroot.py` from
+the root directory.
 
 ## Elements
 
 * `./config/` : Contains parameter information.
 
-* `./bin/` : Created upon compiling manually or with `make`. Contains
+* `./bin/` : Created upon compiling with `make`. Contains
              binaries/executables (the programs).
 
 * `./doc/` : Contains results and the description of the assignment.
