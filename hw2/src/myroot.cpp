@@ -9,7 +9,7 @@ using namespace std;
 
 vector<double> myFunc(const vector<double> &X) {
     vector<double> f(2);
-    
+
     f[0] = sin(X[0] + X[1]);
     f[1] = cos(X[0] - X[1]);
 
@@ -39,8 +39,7 @@ vector<vector<double>> myInvJacobian(const vector<double> &X) {
 }
 
 int main(int argc, char* argv[]) {
-
-    vector<double> root;
+    vector<double> root(2);
     vector<double> X0(2);
     X0 = {-2, 2};
 
