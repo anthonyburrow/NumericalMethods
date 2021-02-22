@@ -91,36 +91,59 @@ $$
 \end{pmatrix}
 \end{aligned}
 $$
-and for the sake of computation speed in the program I use the inverse,
+and for the sake of computation speed in the program I analytically solve for
+$\boldsymbol{J}^{-1}(\boldsymbol{x}) \boldsymbol{f}(\boldsymbol{x})$,
 $$
 \begin{aligned}
-\boldsymbol{J}^{-1}(\boldsymbol{x})
+\boldsymbol{J}^{-1}(\boldsymbol{x}) \boldsymbol{f}(\boldsymbol{x})
 &= \frac{1}{2 \cos(x + y) \sin(x - y)}
 \begin{pmatrix}
 \sin(x - y) & -\cos(x + y) \\
 \sin(x - y) & \cos(x + y) \\
+\end{pmatrix}
+\begin{pmatrix}
+\sin(x + y) \\
+\cos(x - y) \\
+\end{pmatrix} \\
+&= \frac{1}{2}
+\begin{pmatrix}
+\tan(x + y) - \cot(x - y) \\
+\tan(x + y) + \cot(x - y) \\
 \end{pmatrix}.
 \end{aligned}
 $$
 
 The main problem here is determining the initial approximation
-$\boldsymbol{x}_0$. $x$ and $y$ need to be such that one is between 0 and
-$\pi$, while the other is between $-\pi$ and 0, at least I have found through
-basic testing. This is because in the iteration step, if $\boldsymbol{x}_0$ is
-not on the same scale as outputs to the periodic $\sin$ and $\cos$ functions,
-it attempts to overcorrect and fails to converge to a single result.
+$\boldsymbol{x}_0$. Because we have periodic functions, we know analytically
+that there will be an infinite number of roots that are separated by integer
+multiples of $\pi$. Therefore, we may want to limit the roots to some region in
+$\boldsymbol{x}$ space. This is easiest done using the starting point of this
+Newton-Raphson method. Because the Jacobian is found analytically, the root
+found will effectively be that closest in $\boldsymbol{x}$ space to the
+starting guess. In general, one must be careful of their choice of
+$\boldsymbol{x}_0$, as the root found is highly dependent on it when there are
+multiple roots of the function. If we want to find more roots with this method,
+more starting points must be sampled to find all the local minima. It is also
+easier to find what the relevant starting points are if you can plot the
+function and look into the region you want.
 
-In addition, there are 2 roots that this program finds with initial conditions
-within these bounds. With $\boldsymbol{x}_0 = (-1, 1)^\mathsf{T}$ for example,
-where $|x|, |y| < \pi / 2$, the program yields two roots which are effectively
-$x=\pi/4$ and $y=-\pi/4$:
+For the function in this problem, we know there are 2 unique roots within the
+unit circle $|x|, |y| < \pi$ (due to $x$-$y$ symmetry). They are also
+spaced out by $\pi$, however in order for $\boldsymbol{J}$ to be invertible,
+$x$ and $y$ must not differ by $n\pi$ for some $n \in \mathbb{Z}$. Therefore,
+we find the roots by checking two different starting points between $|x|, |y| <
+\pi / 2$ and $\pi / 2 < |x|, |y| < \pi$.
+
+For example, with $\boldsymbol{x}_0 = (-1, 1)^\mathsf{T}$, where $|x|, |y| <
+\pi / 2$, the program yields a root which is effectively $x=\pi/4$ and
+$y=-\pi/4$:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{root1}
     \label{fig:root1}
 \end{figure}
-When $\pi / 2 < |x|, |y| < \pi$, where in this case $\boldsymbol{x}_0 =
-(-2, 2)^\mathsf{T}$, the other two roots ($x=3\pi/4$ and $y=-3\pi/4$) are
+When $\pi / 2 < |x|, |y| < \pi$, where as an example $\boldsymbol{x}_0 =
+(-2, 2)^\mathsf{T}$, the other root ($x=3\pi/4$ and $y=-3\pi/4$) is
 found:
 \begin{figure}[H]
     \centering
