@@ -18,26 +18,16 @@ vector<double> myFunc(const vector<double> &X) {
     return f;
 }
 
-vector<vector<double>> myInvJacobian(const vector<double> &X) {
-    vector<vector<double>> invJacobian(2, vector<double>(2));
+vector<double> myIterCorrection(const vector<double> &X) {
+    vector<double> iterCorrection(2);
 
-    const double costerm = cos(X[0] + X[1]);
-    const double sinterm = sin(X[0] - X[1]);
+    const double tanterm = 0.5 * tan(X[0] + X[1]);
+    const double cotterm = 0.5 / tan(X[0] - X[1]);
 
-    invJacobian[0][0] = sinterm;
-    invJacobian[0][1] = costerm;
-    invJacobian[1][0] = sinterm;
-    invJacobian[1][1] = -costerm;
+    iterCorrection[0] = tanterm - cotterm;
+    iterCorrection[1] = tanterm + cotterm;
 
-    const double inv_det = 1 / (2 * sinterm * costerm);
-
-    for (vector<double> &row : invJacobian) {
-        for (double &elem : row) {
-            elem *= inv_det;
-        }
-    }
-
-    return invJacobian;
+    return iterCorrection;
 }
 
 int main(int argc, char* argv[]) {
@@ -57,7 +47,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Solve root
-    root = mylib::findRoot(myFunc, myInvJacobian, X0);
+    root = mylib::findRoot(myFunc, myIterCorrection, X0);
 
     // Print results
     const int n_digits = numeric_limits<double>::max_digits10;

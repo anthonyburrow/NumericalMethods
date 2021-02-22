@@ -7,6 +7,6 @@ using namespace std;
 
 namespace mylib {
     vector<double> findRoot(function<vector<double> (vector<double>)> func,
-                            function<vector<vector<double>> (vector<double>)> invJacobian,
+                            function<vector<double> (vector<double>)> iterCorrection,
                             const vector<double> &X0);
 }
