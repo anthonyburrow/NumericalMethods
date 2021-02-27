@@ -1,0 +1,6 @@
+# Initial x value (x0)
+0.1
+# Step size (h)
+0.001
+# Number of iterations
+1000
