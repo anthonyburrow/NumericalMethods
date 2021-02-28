@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+OUTDIR=./output
+echo "Creating directory $OUTDIR"
+mkdir -p $OUTDIR
+echo
+
+echo "Running Euler method..."
+./bin/myEuler
+echo
+
+echo "Running Euler Predictor-Corrector method..."
+./bin/myEulerPC
+echo

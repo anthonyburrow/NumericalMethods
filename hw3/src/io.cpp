@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <limits>
+#include <iomanip>
 
 #include "io.hpp"
 
@@ -18,7 +20,7 @@ namespace mylib {
 
         int count = 0;
         while (getline(param_file, line)) {
-            if (line[0] == '#' || line[0] == NULL || line[0] == '\0') { continue; }
+            if (line[0] == '#' || line[0] == '\0') { continue; }
 
             stringstream iss(line);
 
@@ -28,12 +30,14 @@ namespace mylib {
                     iss >> x0;
                     params.x0 = x0;
                     cout << "x0 = " << x0 << endl;
+                    count++;
                     break;
                 case 1 :
                     double h;
                     iss >> h;
                     params.h = h;
                     cout << "h = " << h << endl;
+                    count++;
                     break;
                 default :
                     cout << "Too many lines in param file" << endl;
@@ -44,8 +48,11 @@ namespace mylib {
         return params;
     }
 
+    const int n_digits = numeric_limits<double>::max_digits10;
+
     void writePoint(const vector<double> &X, ofstream &file) {
-        file << X[0] << " " << X[1] << endl;
+        file << fixed << setprecision(n_digits)
+             << X[0] << " " << X[1] << endl;
     }
 
 }

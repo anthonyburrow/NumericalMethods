@@ -32,7 +32,8 @@ int main(int argc, char* argv[]) {
     const double x_max = x0 + myLength;
 
     // Setup output
-    string outFilename = "./output.dat";
+    string outFilename = "./output/euler.dat";
+    cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
 
     // Setup boundary conditions
@@ -45,6 +46,8 @@ int main(int argc, char* argv[]) {
     // Do Euler method iteration
     vector<double> X(2);
 
+    cout << "Calculating solution..." << endl;
+
     while (true) {
         X = mylib::eulerIter(X0, h, myDerivative);
 
@@ -55,6 +58,8 @@ int main(int argc, char* argv[]) {
         X0 = X;
     }
     outFile.close();
+
+    cout << "Complete." << endl;
 
     return 0;
 }
