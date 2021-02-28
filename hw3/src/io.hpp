@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -12,5 +13,7 @@ namespace mylib {
         int n_points;
     };
 
-    eulerParams read_params(const std::string &filename);
+    eulerParams readParams(const string &filename);
+
+    void writePoint(const vector<double> &X, ofstream &file);
 }

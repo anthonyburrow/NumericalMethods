@@ -1,4 +1,7 @@
+#define _USE_MATH_DEFINES
+
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cmath>
 #include <vector>
@@ -12,39 +15,46 @@ double myDerivative(const vector<double> &X) {
     return -cos(X[0]);
 }
 
-double myBoundary(const double &x0) {
-    return -sin(x0);
+double myAnalytic(const double &x) {
+    // Assuming y(0) = 0
+    return -sin(x);
 }
+
+// Want to get the solution for 10 cycles (20pi)
+const double myLength = 20 * M_PI;
 
 int main(int argc, char* argv[]) {
     // Read in parameters
-    string filename = "./config/params";
-    mylib::eulerParams params = mylib::read_params(filename);
+    string inFilename = "./config/params";
+    mylib::eulerParams params = mylib::readParams(inFilename);
     const double x0 = params.x0;
     const double h = params.h;
-    const int n_points = params.n_points;
+    const double x_max = x0 + myLength;
 
+    // Setup output
+    string outFilename = "./output.dat";
+    ofstream outFile(outFilename);
+
+    // Setup boundary conditions
     vector<double> X0(2);
     X0[0] = x0;
-    X0[1] = myBoundary(x0);
+    X0[1] = myAnalytic(x0);
 
-    // Write X0 to file
+    mylib::writePoint(X0, outFile);
 
     // Do Euler method iteration
     vector<double> X(2);
 
-    const int max_iter = n_points - 1;
-    int count = 0;
     while (true) {
         X = mylib::eulerIter(X0, h, myDerivative);
 
-        // Write X to file
+        mylib::writePoint(X, outFile);
 
-        if (count >= max_iter) { break; }
+        if (X[0] >= x_max) { break; }
 
         X0 = X;
-        count++;
     }
+    outFile.close();
 
     return 0;
 }
