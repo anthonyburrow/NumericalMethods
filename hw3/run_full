@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 OUTDIR=./output
-echo "Creating directory $OUTDIR"
+echo "Attempting to create directory $OUTDIR"
 mkdir -p $OUTDIR
 echo
 
@@ -13,4 +13,10 @@ echo "Running Euler Predictor-Corrector method..."
 ./bin/myEulerPC
 echo
 
+FIGDIR=./output/figs
+echo "Attempting to create directory $FIGDIR"
+mkdir -p $FIGDIR
 python3 ./plot.py
+echo
+
+echo "Complete."

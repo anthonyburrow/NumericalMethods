@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 
 
 fn = './output/euler.dat'
@@ -10,9 +11,11 @@ eulerPC_data = np.loadtxt(fn)
 
 analytic = -np.sin(euler_data[:, 0])
 
+
 def make_plot(data, filename):
     fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]},
                            sharex=True)
+
     x = data[:, 0]
     y = data[:, 1]
     res = y - analytic
@@ -30,11 +33,11 @@ def make_plot(data, filename):
 
     plt.tight_layout()
 
-    fn = './output/{filename}.pdf'
+    fn = './output/figs/{}.pdf'.format(filename)
     fig.savefig(fn, format='pdf')
+
 
 print('Generating plots...')
 
 make_plot(euler_data, 'euler')
-
-# Euler PC
+make_plot(eulerPC_data, 'eulerPC')
