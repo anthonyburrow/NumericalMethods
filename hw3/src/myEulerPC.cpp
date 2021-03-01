@@ -28,8 +28,9 @@ int main(int argc, char* argv[]) {
     string inFilename = "./config/params";
     mylib::eulerParams params = mylib::readParams(inFilename);
     const double x0 = params.x0;
-    const double h = params.h;
-    const double x_max = x0 + myLength;
+    const double nPoints = params.nPoints;
+    const double xMax = x0 + myLength;
+    const double h = myLength / nPoints;
 
     // Setup output
     string outFilename = "./output/eulerPC.dat";
@@ -43,17 +44,19 @@ int main(int argc, char* argv[]) {
 
     mylib::writePoint(X0, outFile);
 
-    // Do Euler method iteration
+    // Do Euler PC method iteration
     vector<double> X(2);
 
     cout << "Calculating solution..." << endl;
 
+    int count = 1;
     while (true) {
         X = mylib::eulerPCIter(X0, h, myDerivative);
 
         mylib::writePoint(X, outFile);
 
-        if (X[0] >= x_max) { break; }
+        count++;
+        if (count >= nPoints) { break; }
 
         X0 = X;
     }

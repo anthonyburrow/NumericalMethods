@@ -1,5 +1,15 @@
 # Initial x value (x0)
 0.0
 
-# Step size (h)
-0.01
+# Number of steps
+1000
+
+#############
+# FOR ODEINT:
+#############
+
+# Tolerance
+0.00001
+
+# Minimum step size (relative to the one specified)
+0.0001

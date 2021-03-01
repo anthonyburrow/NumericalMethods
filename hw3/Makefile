@@ -39,11 +39,36 @@ $(TARGET2).o: $(SRC_DIR)/$(NAME2).cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
+# Target 3
+NAME3 = myODEINT
+TARGET3 = $(BIN_DIR)/$(NAME3)
+_SRC1 = $(NAME3)
+_SRC2 = odeint bsstep pzextr mmid
+_SRC3 = io
+SRC3 = $(_SRC1) $(_SRC2) $(_SRC3)
+
+_OBJ_LIST = $(addsuffix .o, $(SRC3))
+OBJ_LIST3 = $(addprefix $(BIN_DIR)/, $(_OBJ_LIST))
+
+$(TARGET3): $(OBJ_LIST3)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(TARGET3).o: $(SRC_DIR)/$(NAME3).cpp
+	$(DIR_GUARD)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+
 # Compile all other objects
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-all: $(TARGET1) $(TARGET2)
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+all: $(TARGET1) $(TARGET2) $(TARGET3)
 
 clean:
-	$(RM) $(BIN_DIR)/*.o $(TARGET1) $(TARGET2)
+	$(RM) $(BIN_DIR)/*.o $(TARGET1) $(TARGET2) $(TARGET3)

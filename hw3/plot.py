@@ -9,8 +9,11 @@ euler_data = np.loadtxt(fn)
 fn = './output/eulerPC.dat'
 eulerPC_data = np.loadtxt(fn)
 
-analytic = -np.sin(euler_data[:, 0])
+fn = './output/odeint.dat'
+odeint_data = np.loadtxt(fn)
 
+def analytic(X):
+    return -np.sin(X)
 
 def make_plot(data, filename):
     fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]},
@@ -18,7 +21,8 @@ def make_plot(data, filename):
 
     x = data[:, 0]
     y = data[:, 1]
-    res = y - analytic
+
+    res = y - analytic(data[:, 0])
 
     ax[0].plot(x, y, c='k')
 
@@ -41,3 +45,4 @@ print('Generating plots...')
 
 make_plot(euler_data, 'euler')
 make_plot(eulerPC_data, 'eulerPC')
+make_plot(odeint_data, 'odeint')

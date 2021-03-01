@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include "io.hpp"
+#include "nr.h"
 
 using namespace std;
 
@@ -33,10 +34,24 @@ namespace mylib {
                     count++;
                     break;
                 case 1 :
-                    double h;
-                    iss >> h;
-                    params.h = h;
-                    cout << "h = " << h << endl;
+                    double nPoints;
+                    iss >> nPoints;
+                    params.nPoints = nPoints;
+                    cout << "No. points = " << nPoints << endl;
+                    count++;
+                    break;
+                case 2 :
+                    double tol;
+                    iss >> tol;
+                    params.tol = tol;
+                    cout << "Relative accuracy = " << tol << endl;
+                    count++;
+                    break;
+                case 3 :
+                    double hMinRatio;
+                    iss >> hMinRatio;
+                    params.hMinRatio = hMinRatio;
+                    cout << "Minimum h = " << hMinRatio << " * h" << endl;
                     count++;
                     break;
                 default :
@@ -54,5 +69,18 @@ namespace mylib {
         file << fixed << setprecision(n_digits)
              << X[0] << " " << X[1] << endl;
     }
+
+    void writePoint(const double &x, const double &y, ofstream &file) {
+        file << fixed << setprecision(n_digits)
+             << x << " " << y << endl;
+    }
+
+    // void writeAll(const vector<double> &X, const Vec_IO_DP &y,
+    //               ofstream &file) {
+    //     for (int i=0; i < X.size(); i++) {
+    //         file << fixed << setprecision(n_digits)
+    //             << X[i] << " " << y[i] << endl;
+    //     }
+    // }
 
 }
