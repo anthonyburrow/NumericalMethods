@@ -10,7 +10,31 @@ eulerPC_data = np.loadtxt(fn)
 
 analytic = -np.sin(euler_data[:, 0])
 
-fig, ax = plt.subplots(dpi=200)
+def make_plot(data, filename):
+    fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]},
+                           sharex=True)
+    x = data[:, 0]
+    y = data[:, 1]
+    res = y - analytic
 
-fn = './output/euler.pdf'
-fig.savefig(fn, format='pdf')
+    ax[0].plot(x, y, c='k')
+
+    ax[1].plot(x, res, c='k')
+
+    ax[0].set_ylabel('Calculated y(x)')
+    ax[1].set_xlabel('x')
+    ax[1].set_ylabel('Residual y(x)')
+
+    ax[0].set_ylim(-1, 1)
+    [_ax.set_xlim(0, 20 * np.pi) for _ax in ax]
+
+    plt.tight_layout()
+
+    fn = './output/{filename}.pdf'
+    fig.savefig(fn, format='pdf')
+
+print('Generating plots...')
+
+make_plot(euler_data, 'euler')
+
+# Euler PC

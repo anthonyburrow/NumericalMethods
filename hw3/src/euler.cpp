@@ -21,7 +21,7 @@ namespace mylib {
         vector<double> X(2);
         X = eulerIter(X0, h, deriv);
 
-        double y_new = X0[1] + 0.5 * (deriv(X0) + deriv(X));
+        double y_new = X0[1] + 0.5 * (deriv(X0) + deriv(X)) * h;
 
         X[1] = y_new;
 

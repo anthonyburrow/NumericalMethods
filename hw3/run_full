@@ -12,3 +12,5 @@ echo
 echo "Running Euler Predictor-Corrector method..."
 ./bin/myEulerPC
 echo
+
+python3 ./plot.py
