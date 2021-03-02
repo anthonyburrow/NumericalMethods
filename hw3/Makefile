@@ -65,9 +65,6 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.hpp
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 all: $(TARGET1) $(TARGET2) $(TARGET3)
 
 clean:

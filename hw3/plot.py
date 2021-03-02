@@ -27,8 +27,8 @@ def make_plot(data, filename):
     y_true = analytic(x)
     res = y - y_true
 
-    ax[0].plot(x, y, c='k')
-    ax[0].plot(x, y_true, 'r--')
+    ax[0].plot(x, y, c='k', label='Calculated')
+    ax[0].plot(x, y_true, '--', c='tab:orange', label='Analytic')
 
     ax[1].plot(x, res, c='k')
 
@@ -39,11 +39,13 @@ def make_plot(data, filename):
     ax[0].set_ylim(-1.1, 1.1)
     [_ax.set_xlim(0, 20 * np.pi) for _ax in ax]
 
-    ax[1].ticklabel_format(axis="y", style="sci", scilimits=(0,0))
+    ax[1].ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+
+    ax[0].legend(loc='upper right', framealpha=1)
 
     plt.tight_layout()
 
-    fn = './output/figs/{}.pdf'.format(filename)
+    fn = './doc/figs/{}.pdf'.format(filename)
     fig.savefig(fn, format='pdf')
 
 
