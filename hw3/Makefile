@@ -4,7 +4,16 @@ CXXFLAGS =
 BIN_DIR = ./bin
 SRC_DIR = ./src
 
-DIR_GUARD = mkdir -p $(@D)
+# Create directories required
+MAKE_DIRS = ./bin ./output ./doc/figs
+MKDIR_P = mkdir -p
+
+.PHONY: directories $(MAKE_DIRS)
+
+directories: $(MAKE_DIRS)
+
+$(MAKE_DIRS):
+	$(MKDIR_P) $@
 
 
 # Target 1
@@ -18,10 +27,6 @@ OBJ_LIST1 = $(addprefix $(BIN_DIR)/, $(_OBJ_LIST))
 $(TARGET1): $(OBJ_LIST1)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(TARGET1).o: $(SRC_DIR)/$(NAME1).cpp
-	$(DIR_GUARD)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 # Target 2
 NAME2 = myEulerPC
@@ -33,10 +38,6 @@ OBJ_LIST2 = $(addprefix $(BIN_DIR)/, $(_OBJ_LIST))
 
 $(TARGET2): $(OBJ_LIST2)
 	$(CXX) $(CXXFLAGS) $^ -o $@
-
-$(TARGET2).o: $(SRC_DIR)/$(NAME2).cpp
-	$(DIR_GUARD)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
 # Target 3
@@ -53,19 +54,16 @@ OBJ_LIST3 = $(addprefix $(BIN_DIR)/, $(_OBJ_LIST))
 $(TARGET3): $(OBJ_LIST3)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(TARGET3).o: $(SRC_DIR)/$(NAME3).cpp
-	$(DIR_GUARD)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 # Compile all other objects
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(DIR_GUARD)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-all: $(TARGET1) $(TARGET2) $(TARGET3)
+all: directories $(TARGET1) $(TARGET2) $(TARGET3)
 
 clean:
 	$(RM) $(BIN_DIR)/*.o $(TARGET1) $(TARGET2) $(TARGET3)

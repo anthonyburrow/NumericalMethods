@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 
-OUTDIR=./output
-echo "Attempting to create directory $OUTDIR"
-mkdir -p $OUTDIR
-echo
-
 echo "Running Euler method..."
 ./bin/myEuler
 echo
@@ -17,9 +12,7 @@ echo "Running ODEINT method..."
 ./bin/myODEINT
 echo
 
-FIGDIR=./output/figs
-echo "Attempting to create directory $FIGDIR"
-mkdir -p $FIGDIR
+echo "Running plotting script..."
 python3 ./plot.py
 echo
 

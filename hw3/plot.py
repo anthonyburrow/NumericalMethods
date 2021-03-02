@@ -28,7 +28,7 @@ def make_plot(data, filename):
     res = y - y_true
 
     ax[0].plot(x, y, c='k', label='Calculated')
-    ax[0].plot(x, y_true, '--', c='tab:orange', label='Analytic')
+    ax[0].plot(x, y_true, '--', c='r', label='Analytic')
 
     ax[1].plot(x, res, c='k')
 
