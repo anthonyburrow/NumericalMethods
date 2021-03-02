@@ -1,7 +1,7 @@
 # Initial x value (x0)
 0.0
 
-# Number of steps
+# Number of points (# of steps + 1)
 500
 
 #############
@@ -11,5 +11,5 @@
 # Tolerance
 0.000001
 
-# Minimum step size (relative to the one specified)
+# Minimum step size (relative to initial h)
 0.0001

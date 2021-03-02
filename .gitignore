@@ -1,6 +1,9 @@
 # Executables
 */bin/*
 
+# Outputs from executables
+*/output/*
+
 # LaTeX
 */doc/*.aux
 */doc/*.log
@@ -15,6 +18,6 @@
 # VSCode
 /.vscode/
 
-# Lecture directory for tests
+# Other class stuff
 /lecture/
 /numrec/
