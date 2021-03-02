@@ -2,14 +2,14 @@
 0.0
 
 # Number of steps
-1000
+500
 
 #############
 # FOR ODEINT:
 #############
 
 # Tolerance
-0.00001
+0.000001
 
 # Minimum step size (relative to the one specified)
 0.0001

@@ -20,7 +20,7 @@ double myAnalytic(const double &x) {
 }
 
 // Want to get the solution for 10 cycles (20pi)
-const double myLength = 20 * M_PI;
+const double totalLength = 20 * M_PI;
 
 // Dumb extern variables that need to be declared for odeint.cpp
 DP dxsav;
@@ -36,8 +36,11 @@ int main(int argc, char* argv[]) {
     const double &nPoints = params.nPoints;
     const double &tol = params.tol;
     const double &hmin = params.hMinRatio;
-    const double &xMax = x0 + myLength;
-    const double &h = myLength / nPoints;
+
+    const double xMax = x0 + totalLength;
+    const double intervalLength = totalLength / nPoints;
+    // Start with 10% of the interval size
+    const double h = 0.1 * intervalLength;
 
     // Setup output
     string outFilename = "./output/odeint.dat";
@@ -63,7 +66,7 @@ int main(int argc, char* argv[]) {
 
     for (int i = 1; i < nPoints; i++) {
         double &x0 = X[i - 1];
-        double x1 = x0 + h;
+        double x1 = x0 + intervalLength;
         X[i] = x1;
         NR::odeint(y, x0, x1, tol, h, hmin, nok, nbad, myDerivative,
                     NR::bsstep);

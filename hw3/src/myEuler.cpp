@@ -27,8 +27,9 @@ int main(int argc, char* argv[]) {
     // Read in parameters
     string inFilename = "./config/params";
     mylib::eulerParams params = mylib::readParams(inFilename);
-    const double x0 = params.x0;
-    const double nPoints = params.nPoints;
+    const double &x0 = params.x0;
+    const double &nPoints = params.nPoints;
+
     const double xMax = x0 + myLength;
     const double h = myLength / nPoints;
 

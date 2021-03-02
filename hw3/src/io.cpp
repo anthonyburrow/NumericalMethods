@@ -60,6 +60,8 @@ namespace mylib {
         }
         param_file.close();
 
+        cout << "..." << endl;
+
         return params;
     }
 
