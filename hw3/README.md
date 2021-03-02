@@ -1,4 +1,4 @@
-# Template
+# myEuler, myEulerPC, and myODEINT
 
 ## Loaded Schooner modules
 
