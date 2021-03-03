@@ -62,7 +62,7 @@ namespace mylib {
 
     void writePoint(const vector<double> &X, ofstream &file) {
         file << fixed << setprecision(n_digits)
-             << X[0] << " " << X[1] << " " << X[2] << " " << X[3] << endl;
+             << X[0] << " " << X[1] << " " << X[2] << endl;
     }
 
 }
