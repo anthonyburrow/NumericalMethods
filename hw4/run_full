@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+echo "Running ODEInt method..."
+./bin/myODEInt
+echo
+
+echo "Running Leapfrog method..."
+./bin/myLeapfrog
+echo
+
+# echo "Running Velocity Verlet method..."
+# ./bin/myVelVerlet
+# echo
+
+echo "Running plotting script..."
+python3 ./plot.py
+echo
+
+echo "Complete."

@@ -41,10 +41,24 @@ namespace mylib {
                     count++;
                     break;
                 case 2 :
-                    double nPoints;
+                    int nPoints;
                     iss >> nPoints;
                     params.nPoints = nPoints;
                     cout << "No. points = " << nPoints << endl;
+                    count++;
+                    break;
+                case 3 :
+                    double tol;
+                    iss >> tol;
+                    params.tol = tol;
+                    cout << "Relative accuracy = " << tol << endl;
+                    count++;
+                    break;
+                case 4 :
+                    double hMinRatio;
+                    iss >> hMinRatio;
+                    params.hMinRatio = hMinRatio;
+                    cout << "Minimum h = " << hMinRatio << " * h" << endl;
                     count++;
                     break;
                 default :
@@ -63,6 +77,11 @@ namespace mylib {
     void writePoint(const vector<double> &X, ofstream &file) {
         file << fixed << setprecision(n_digits)
              << X[0] << " " << X[1] << " " << X[2] << endl;
+    }
+
+    void writePoint(const double &x, const Vec_IO_DP &y, ofstream &file) {
+        file << fixed << setprecision(n_digits)
+             << x << " " << y[0] << " " << y[1] << endl;
     }
 
 }

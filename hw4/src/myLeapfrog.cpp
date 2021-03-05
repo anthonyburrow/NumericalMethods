@@ -13,7 +13,7 @@ double myAcceleration(const double &x) {
     return -x;
 }
 
-double myTime = 5 * M_PI;
+double myTime = 10 * M_PI;
 
 int main(int argc, char* argv[]) {
     // Read in parameters

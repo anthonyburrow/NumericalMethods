@@ -13,7 +13,7 @@ double myForce(const double &x) {
     return -x;
 }
 
-double myTime = 5 * M_PI;
+double myTime = 10 * M_PI;
 
 int main(int argc, char* argv[]) {
     // Read in parameters
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     const double dt = myTime / nPoints;
 
     // Setup output
-    string outFilename = "./output/leapfrog.dat";
+    string outFilename = "./output/velverlet.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
 

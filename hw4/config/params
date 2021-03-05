@@ -6,3 +6,13 @@
 
 # Number of points (# of steps + 1)
 500
+
+#############
+# FOR ODEINT:
+#############
+
+# Tolerance
+0.000001
+
+# Minimum step size (relative to initial h)
+0.0001
