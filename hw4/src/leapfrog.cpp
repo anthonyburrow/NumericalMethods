@@ -4,12 +4,12 @@
 using namespace std;
 
 namespace mylib {
-    vector<double> leapfrogIter(const vector<double> &X0, const double &dt,
+    vector<double> leapfrogIter(vector<double> &X,
+                                const vector<double> &X0,
+                                const double &dt,
                                 function<double (double)> acceleration,
                                 function<double (double, double)> kinetic,
                                 const double &mass) {
-        vector<double> X(5);
-
         const double &t0 = X0[0];
         const double &x0 = X0[1];
         const double &v0 = X0[2];

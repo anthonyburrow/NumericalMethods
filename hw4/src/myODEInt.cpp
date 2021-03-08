@@ -15,8 +15,8 @@ void myDerivative(const DP t, Vec_I_DP &X, Vec_O_DP &derX) {
     return;
 }
 
-double myKinetic(const double &v) {
-    return 0.5 * v * v;
+double myKinetic(const double &v, const double &m) {
+    return 0.5 * m * v * v;
 }
 
 // Want to get the solution for 5 cycles (10pi)
@@ -34,6 +34,7 @@ int main(int argc, char* argv[]) {
     mylib::eulerParams params = mylib::readParams(inFilename);
     const double &x0 = params.x0;
     const double &v0 = params.v0;
+    const double &mass = params.m;
     const int &nPoints = params.nPoints;
     const double &tol = params.tol;
     const double &hmin = params.hMinRatio;
@@ -57,7 +58,7 @@ int main(int argc, char* argv[]) {
 
     double t0 = 0;
 
-    double energy = myKinetic(v0);
+    double energy = myKinetic(v0, mass);
     mylib::writePoint(t0, X, energy, outFile);
 
     // I believe these are set to be 0 in the code anyways so I don't
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]) {
         double t1 = t0 + dt;
         NR::odeint(X, t0, t1, tol, h, hmin, nok, nbad, myDerivative,
                     NR::bsstep);
-        energy = myKinetic(X[1]);
+        energy = myKinetic(X[1], mass);
         mylib::writePoint(t1, X, energy, outFile);
 
         t0 = t1;

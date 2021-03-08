@@ -36,6 +36,7 @@ int main(int argc, char* argv[]) {
     string outFilename = "./output/velverlet.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
+    outFile << "time\tposition\tmomentum\tforce" << endl;
 
     // Set boundary conditions
     vector<double> X0(5);
@@ -51,13 +52,15 @@ int main(int argc, char* argv[]) {
 
     int count = 1;
     while (true) {
-        X = mylib::velVerletIter(X0, dt, myForce, myKinetic, mass);
+        X = mylib::velVerletIter(X, X0, dt, myForce, myKinetic, mass);
 
         mylib::writePoint(X, outFile);
 
         count++;
         if (count >= nPoints) { break; }
 
+        // This assigns values of X to those of X0
+        // (so it isn't a reference)
         X0 = X;
     }
 

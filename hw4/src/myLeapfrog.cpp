@@ -36,6 +36,7 @@ int main(int argc, char* argv[]) {
     string outFilename = "./output/leapfrog.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
+    outFile << "time\tposition\tvelocity\tacceleration" << endl;
 
     // Set boundary conditions
     vector<double> X0(5);
@@ -51,13 +52,15 @@ int main(int argc, char* argv[]) {
 
     int count = 1;
     while (true) {
-        X = mylib::leapfrogIter(X0, dt, myAcceleration, myKinetic, mass);
+        X = mylib::leapfrogIter(X, X0, dt, myAcceleration, myKinetic, mass);
 
         mylib::writePoint(X, outFile);
 
         count++;
         if (count >= nPoints) { break; }
 
+        // This assigns values of X to those of X0
+        // (so it isn't a reference)
         X0 = X;
     }
 

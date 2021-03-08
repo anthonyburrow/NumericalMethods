@@ -4,13 +4,13 @@ plt.switch_backend('agg')
 
 
 fn = './output/odeint.dat'
-odeint_data = np.loadtxt(fn)
+odeint_data = np.loadtxt(fn, skiprows=1)
 
 fn = './output/leapfrog.dat'
-leapfrog_data = np.loadtxt(fn)
+leapfrog_data = np.loadtxt(fn, skiprows=1)
 
 fn = './output/velverlet.dat'
-velverlet_data = np.loadtxt(fn)
+velverlet_data = np.loadtxt(fn, skiprows=1)
 
 fn = './config/params'
 with open(fn) as file:
