@@ -9,8 +9,8 @@
 
 using namespace std;
 
-double myForce(const double &x) {
-    return -x;
+double myForce(const double &x, const double &m) {
+    return -m * x;
 }
 
 double myTime = 10 * M_PI;
@@ -19,25 +19,26 @@ int main(int argc, char* argv[]) {
     // Read in parameters
     string inFilename = "./config/params";
     mylib::eulerParams params = mylib::readParams(inFilename);
-    const double x0 = params.x0;
-    const double v0 = params.v0;
-    const int nPoints = params.nPoints;
+    const double &x0 = params.x0;
+    const double &mass = params.m;
+    const double p0 = params.v0 * mass;
+    const int &nPoints = params.nPoints;
 
     const double dt = myTime / nPoints;
+
+    cout << "Calculating solution..." << endl;
 
     // Setup output
     string outFilename = "./output/velverlet.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
 
-    cout << "Calculating solution..." << endl;
-
     // Set boundary conditions
     vector<double> X0(4);
     X0[0] = 0;
     X0[1] = x0;
-    X0[2] = v0;
-    X0[3] = myForce(x0);
+    X0[2] = p0;
+    X0[3] = myForce(x0, mass);
 
     mylib::writePoint(X0, outFile);
 
@@ -45,7 +46,7 @@ int main(int argc, char* argv[]) {
 
     int count = 1;
     while (true) {
-        X = mylib::velVerletIter(X0, dt, myForce);
+        X = mylib::velVerletIter(X0, dt, myForce, mass);
 
         mylib::writePoint(X, outFile);
 

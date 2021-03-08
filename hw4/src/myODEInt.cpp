@@ -39,6 +39,8 @@ int main(int argc, char* argv[]) {
     // Start with 10% of the interval size
     const double h = 0.1 * dt;
 
+    cout << "Calculating solution..." << endl;
+
     // Setup output
     string outFilename = "./output/odeint.dat";
     cout << "Writing to " << outFilename << endl;
@@ -59,8 +61,6 @@ int main(int argc, char* argv[]) {
     int nbad = 0;
 
     // Do Burlisch-Stoer method
-    cout << "Calculating solution..." << endl;
-
     for (int i = 1; i < nPoints; i++) {
         double t1 = t0 + dt;
         NR::odeint(X, t0, t1, tol, h, hmin, nok, nbad, myDerivative,

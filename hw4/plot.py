@@ -10,7 +10,7 @@ fn = './output/leapfrog.dat'
 leapfrog_data = np.loadtxt(fn)
 
 fn = './output/velverlet.dat'
-# velverlet_data = np.loadtxt(fn)
+velverlet_data = np.loadtxt(fn)
 
 fn = './config/params'
 with open(fn) as file:
@@ -84,4 +84,4 @@ print('Generating plots...')
 
 make_plot(odeint_data, 'odeint')
 make_plot(leapfrog_data, 'leapfrog')
-# make_plot(velverlet_data, 'velverlet')
+make_plot(velverlet_data, 'velverlet')

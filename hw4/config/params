@@ -4,6 +4,9 @@
 # Initial velocity (v0)
 0.0
 
+# Mass (m)
+1.0
+
 # Number of points (# of steps + 1)
 500
 

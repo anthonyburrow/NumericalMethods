@@ -12,6 +12,7 @@ namespace mylib {
     struct eulerParams {
         double x0;
         double v0;
+        double m;
         int nPoints;
         double tol;
         double hMinRatio;

@@ -19,18 +19,18 @@ int main(int argc, char* argv[]) {
     // Read in parameters
     string inFilename = "./config/params";
     mylib::eulerParams params = mylib::readParams(inFilename);
-    const double x0 = params.x0;
-    const double v0 = params.v0;
-    const int nPoints = params.nPoints;
+    const double &x0 = params.x0;
+    const double &v0 = params.v0;
+    const int &nPoints = params.nPoints;
 
     const double dt = myTime / nPoints;
+
+    cout << "Calculating solution..." << endl;
 
     // Setup output
     string outFilename = "./output/leapfrog.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
-
-    cout << "Calculating solution..." << endl;
 
     // Set boundary conditions
     vector<double> X0(4);

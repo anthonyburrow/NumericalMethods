@@ -30,35 +30,42 @@ namespace mylib {
                     double x0;
                     iss >> x0;
                     params.x0 = x0;
-                    cout << "x0 = " << x0 << endl;
+                    cout << "  x0 = " << x0 << endl;
                     count++;
                     break;
                 case 1 :
                     double v0;
                     iss >> v0;
                     params.v0 = v0;
-                    cout << "v0 = " << v0 << endl;
+                    cout << "  v0 = " << v0 << endl;
                     count++;
                     break;
                 case 2 :
-                    int nPoints;
-                    iss >> nPoints;
-                    params.nPoints = nPoints;
-                    cout << "No. points = " << nPoints << endl;
+                    double m;
+                    iss >> m;
+                    params.m = m;
+                    cout << "  mass = " << m << endl;
                     count++;
                     break;
                 case 3 :
-                    double tol;
-                    iss >> tol;
-                    params.tol = tol;
-                    cout << "Relative accuracy = " << tol << endl;
+                    int nPoints;
+                    iss >> nPoints;
+                    params.nPoints = nPoints;
+                    cout << "  No. points = " << nPoints << endl;
                     count++;
                     break;
                 case 4 :
+                    double tol;
+                    iss >> tol;
+                    params.tol = tol;
+                    cout << "  Relative accuracy = " << tol << endl;
+                    count++;
+                    break;
+                case 5 :
                     double hMinRatio;
                     iss >> hMinRatio;
                     params.hMinRatio = hMinRatio;
-                    cout << "Minimum h = " << hMinRatio << " * h" << endl;
+                    cout << "  Minimum h = " << hMinRatio << " * h" << endl;
                     count++;
                     break;
                 default :
@@ -66,8 +73,6 @@ namespace mylib {
             }
         }
         param_file.close();
-
-        cout << "..." << endl;
 
         return params;
     }

@@ -65,7 +65,7 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 all: directories $(TARGET1) $(TARGET2) $(TARGET3)
 
-TESTS = $(TARGET2)
+TESTS = $(TARGET1)
 
 test: directories $(TESTS)
 
