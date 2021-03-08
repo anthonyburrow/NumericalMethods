@@ -1,4 +1,4 @@
-# Template
+# myODEInt, myLeapfrog, myVelVerlet
 
 ## Loaded Schooner modules
 
