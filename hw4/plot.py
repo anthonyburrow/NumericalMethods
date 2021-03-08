@@ -33,6 +33,7 @@ def make_plot(data, filename):
     t = data[:, 0]
     x = data[:, 1]
     v = data[:, 2]
+    T = data[:, 3]
 
     # Position vs time
     x_true = analytic_position(t)
@@ -54,7 +55,6 @@ def make_plot(data, filename):
 
     # Energy vs time
     T_true = analytic_energy(t)
-    T = 0.5 * v**2
 
     ax[0, 1].plot(t, T, c='k', label='Calculated')
     ax[0, 1].plot(t, T_true, '--', c='r', label='Analytic')

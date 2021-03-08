@@ -81,12 +81,13 @@ namespace mylib {
 
     void writePoint(const vector<double> &X, ofstream &file) {
         file << fixed << setprecision(n_digits)
-             << X[0] << " " << X[1] << " " << X[2] << endl;
+             << X[0] << " " << X[1] << " " << X[2] << " " << X[4] << endl;
     }
 
-    void writePoint(const double &x, const Vec_IO_DP &y, ofstream &file) {
+    void writePoint(const double &x, const Vec_IO_DP &y,
+                    const double &E, ofstream &file) {
         file << fixed << setprecision(n_digits)
-             << x << " " << y[0] << " " << y[1] << endl;
+             << x << " " << y[0] << " " << y[1] << " " << E << endl;
     }
 
 }

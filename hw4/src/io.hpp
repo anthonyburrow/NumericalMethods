@@ -22,5 +22,6 @@ namespace mylib {
 
     void writePoint(const vector<double> &X, ofstream &file);
 
-    void writePoint(const double &x, const Vec_IO_DP &y, ofstream &file);
+    void writePoint(const double &x, const Vec_IO_DP &y,
+                    const double &E, ofstream &file);
 }

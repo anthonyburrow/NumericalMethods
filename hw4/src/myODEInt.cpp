@@ -15,6 +15,10 @@ void myDerivative(const DP t, Vec_I_DP &X, Vec_O_DP &derX) {
     return;
 }
 
+double myKinetic(const double &v) {
+    return 0.5 * v * v;
+}
+
 // Want to get the solution for 5 cycles (10pi)
 double myTime = 10 * M_PI;
 
@@ -53,7 +57,8 @@ int main(int argc, char* argv[]) {
 
     double t0 = 0;
 
-    mylib::writePoint(t0, X, outFile);
+    double energy = myKinetic(v0);
+    mylib::writePoint(t0, X, energy, outFile);
 
     // I believe these are set to be 0 in the code anyways so I don't
     // know what these are even for or what they mean
@@ -65,8 +70,9 @@ int main(int argc, char* argv[]) {
         double t1 = t0 + dt;
         NR::odeint(X, t0, t1, tol, h, hmin, nok, nbad, myDerivative,
                     NR::bsstep);
-        mylib::writePoint(t1, X, outFile);
-        
+        energy = myKinetic(X[1]);
+        mylib::writePoint(t1, X, energy, outFile);
+
         t0 = t1;
     }
 

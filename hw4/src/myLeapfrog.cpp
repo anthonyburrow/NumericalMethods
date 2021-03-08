@@ -13,6 +13,10 @@ double myAcceleration(const double &x) {
     return -x;
 }
 
+double myKinetic(const double &v, const double &m) {
+    return 0.5 * m * v * v;
+}
+
 double myTime = 10 * M_PI;
 
 int main(int argc, char* argv[]) {
@@ -21,6 +25,7 @@ int main(int argc, char* argv[]) {
     mylib::eulerParams params = mylib::readParams(inFilename);
     const double &x0 = params.x0;
     const double &v0 = params.v0;
+    const double &mass = params.m;
     const int &nPoints = params.nPoints;
 
     const double dt = myTime / nPoints;
@@ -33,19 +38,20 @@ int main(int argc, char* argv[]) {
     ofstream outFile(outFilename);
 
     // Set boundary conditions
-    vector<double> X0(4);
+    vector<double> X0(5);
     X0[0] = 0;
     X0[1] = x0;
     X0[2] = v0;
     X0[3] = myAcceleration(x0);
+    X0[4] = myKinetic(v0, mass);
 
     mylib::writePoint(X0, outFile);
 
-    vector<double> X(4);
+    vector<double> X(5);
 
     int count = 1;
     while (true) {
-        X = mylib::leapfrogIter(X0, dt, myAcceleration);
+        X = mylib::leapfrogIter(X0, dt, myAcceleration, myKinetic, mass);
 
         mylib::writePoint(X, outFile);
 

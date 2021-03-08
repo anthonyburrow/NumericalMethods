@@ -13,6 +13,10 @@ double myForce(const double &x, const double &m) {
     return -m * x;
 }
 
+double myKinetic(const double &p, const double &m) {
+    return 0.5 * p * p / m;
+}
+
 double myTime = 10 * M_PI;
 
 int main(int argc, char* argv[]) {
@@ -34,19 +38,20 @@ int main(int argc, char* argv[]) {
     ofstream outFile(outFilename);
 
     // Set boundary conditions
-    vector<double> X0(4);
+    vector<double> X0(5);
     X0[0] = 0;
     X0[1] = x0;
     X0[2] = p0;
     X0[3] = myForce(x0, mass);
+    X0[4] = myKinetic(p0, mass);
 
     mylib::writePoint(X0, outFile);
 
-    vector<double> X(4);
+    vector<double> X(5);
 
     int count = 1;
     while (true) {
-        X = mylib::velVerletIter(X0, dt, myForce, mass);
+        X = mylib::velVerletIter(X0, dt, myForce, myKinetic, mass);
 
         mylib::writePoint(X, outFile);
 
