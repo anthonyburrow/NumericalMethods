@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     string outFilename = "./output/leapfrog.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
-    outFile << "time\tposition\tvelocity\tacceleration" << endl;
+    outFile << "time\tposition\tvelocity\tkinetic" << endl;
 
     // Set boundary conditions
     vector<double> X0(5);

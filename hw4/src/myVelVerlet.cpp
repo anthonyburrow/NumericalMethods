@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     string outFilename = "./output/velverlet.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
-    outFile << "time\tposition\tmomentum\tforce" << endl;
+    outFile << "time\tposition\tmomentum\tkinetic" << endl;
 
     // Set boundary conditions
     vector<double> X0(5);

@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
     string outFilename = "./output/odeint.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
+    outFile << "time\tposition\tvelocity\tkinetic" << endl;
 
     // Setup boundary condition
     Vec_IO_DP X(2);
