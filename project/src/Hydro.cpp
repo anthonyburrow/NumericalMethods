@@ -1,5 +1,4 @@
 #include <string>
-#include <vector>
 
 #include "Hydro.hpp"
 
@@ -22,27 +21,42 @@ namespace myHydro {
         initVectors();
     }
 
+    void Hydro::iterate() {
+        myHydro::calcU(*this);
+
+        myHydro::calcR(*this);
+
+        myHydro::calcV(*this);
+    }
+
     void Hydro::initVectors() {
         R.reserve(nBoundaries);
-        myHydro::initR(R, initRMax);
+        myHydro::initR(*this);
 
         U.reserve(nBoundaries);
-        myHydro::initU(U);
+        myHydro::initU(*this);
 
         P.reserve(nZones);
-        myHydro::initP(P);
+        myHydro::initP(*this);
 
         V.reserve(nZones);
-        myHydro::initV(V);
+        Vht.reserve(nZones);
+        myHydro::initV(*this);
 
         T.reserve(nZones);
-        myHydro::initT(T);
+        myHydro::initT(*this);
 
         DM.reserve(nZones);
-        myHydro::calcDM(DM, R, V);
+        myHydro::calcDM(*this);
 
-        DM.reserve(nBoundaries);
-        myHydro::calcXM(XM, DM);
+        DMb.reserve(nBoundaries);
+        myHydro::calcDMb(*this);
+
+        XM.reserve(nBoundaries);
+        myHydro::calcXM(*this);
+
+        Q.reserve(nZones);
+        myHydro::initQ(*this);
     }
 
 }

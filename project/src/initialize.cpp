@@ -1,37 +1,44 @@
 #include <vector>
 
+#include "Hydro.hpp"
+
 using namespace std;
 
 namespace myHydro {
 
-    void initR(vector<double> &R, const double &initRMax) {
+    void initR(myHydro::Hydro &hydro) {
         // Start with uniform spacial boundaries
-        const int nZones = R.size() - 1;
-        const double dR = initRMax / nZones;
+        const double dR = hydro.initRMax / hydro.nZones;
 
-        R[0] = 0;
+        hydro.R[0] = 0;   // BC
 
-        for (int i = 1; i < nZones + 1; i++) {
-            R[i] = R[i - 1] + dR;
+        for (int i = 1; i < hydro.nBoundaries; i++) {
+            hydro.R[i] = hydro.R[i - 1] + dR;
         }
     }
 
-    void initU(vector<double> &U) {
+    void initU(myHydro::Hydro &hydro) {
         // Start with zero velocities
-        for (int i = 0; i < U.size(); i++) {
-            U[i] = 0;
+        hydro.U[0] = 0;   // BC
+
+        for (int i = 1; i < hydro.nBoundaries; i++) {
+            hydro.U[i] = 0;
         }
     }
 
-    void initP(vector<double> &P) {
+    void initP(myHydro::Hydro &hydro) {
 
     }
 
-    void initV(vector<double> &V) {
+    void initV(myHydro::Hydro &hydro) {
 
     }
 
-    void initT(vector<double> &T) {
+    void initT(myHydro::Hydro &hydro) {
+
+    }
+
+    void initQ(myHydro::Hydro &hydro) {
 
     }
 

@@ -2,16 +2,20 @@
 
 #include <vector>
 
+#include "Hydro.hpp"
+
 namespace myHydro {
 
-    void calcDM(std::vector<double> &DM,
-                const std::vector<double> &R,
-                const std::vector<double> &V);
+    void calcDM(myHydro::Hydro &hydro);
 
-    void calcXM(std::vector<double> &XM,
-                const std::vector<double> &DM);
+    void calcDMb(myHydro::Hydro &hydro);
 
-    void tIterR(std::vector<double> &XM,
-                const std::vector<double> &DM);
+    void calcXM(myHydro::Hydro &hydro);
+
+    void calcR(myHydro::Hydro &hydro);
+
+    void calcU(myHydro::Hydro &hydro);
+
+    void calcV(myHydro::Hydro &hydro);
 
 }

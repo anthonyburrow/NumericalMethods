@@ -9,11 +9,11 @@ int main(int argc, char* argv[]) {
 
     myHydro::Hydro hydro(inFilename);
 
-    // Time step iteration
-    // int count = 0;
-    // while (count < nIter) {
-    //     myHydro::iterate();
-    // }
+    int count = 0;
+    while (count < hydro.nIter) {
+        hydro.iterate();
+        count++;
+    }
 
     return 0;
 }

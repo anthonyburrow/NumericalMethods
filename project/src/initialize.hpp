@@ -2,18 +2,20 @@
 
 #include <vector>
 
-using namespace std;
+#include "Hydro.hpp"
 
 namespace myHydro {
 
-    void initR(vector<double> &R, const double &initRMax);
+    void initR(myHydro::Hydro &hydro);
 
-    void initU(vector<double> &U);
+    void initU(myHydro::Hydro &hydro);
 
-    void initP(vector<double> &P);
+    void initP(myHydro::Hydro &hydro);
 
-    void initV(vector<double> &V);
+    void initV(myHydro::Hydro &hydro);
 
-    void initT(vector<double> &T);
+    void initT(myHydro::Hydro &hydro);
+
+    void initQ(myHydro::Hydro &hydro);
 
 }
