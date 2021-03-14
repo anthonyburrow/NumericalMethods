@@ -44,6 +44,7 @@ namespace myHydro {
         myHydro::initV(*this);
 
         T.reserve(nZones);
+        Tht.reserve(nZones);
         myHydro::initT(*this);
 
         DM.reserve(nZones);

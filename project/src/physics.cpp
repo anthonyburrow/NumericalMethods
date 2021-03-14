@@ -91,4 +91,8 @@ namespace myHydro {
         }
     }
 
+    void calcTht(myHydro::Hydro &hydro) {
+        
+    }
+
 }

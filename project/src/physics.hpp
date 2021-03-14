@@ -18,4 +18,6 @@ namespace myHydro {
 
     void calcV(myHydro::Hydro &hydro);
 
+    void calcTht(myHydro::Hydro &hydro);
+
 }

@@ -26,6 +26,7 @@ namespace myHydro {
             std::vector<double> V;
             std::vector<double> Vht;
             std::vector<double> T;
+            std::vector<double> Tht;
             std::vector<double> DM;
             std::vector<double> DMb;
             std::vector<double> XM;

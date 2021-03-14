@@ -35,7 +35,9 @@ namespace myHydro {
     }
 
     void initT(myHydro::Hydro &hydro) {
+        // stuff here
 
+        hydro.Tht = hydro.T;
     }
 
     void initQ(myHydro::Hydro &hydro) {
