@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+echo "Running FTCS method..."
+./bin/myFTCS
+echo
+
+echo "Running plotting script..."
+python3 ./plot.py
+echo
+
+echo "Complete."

@@ -1,0 +1,23 @@
+# Diffusion constant (D)
+1.0
+
+# Time interval (dt)
+0.0266
+
+# Space interval (dx)
+0.2
+
+# Minimum x (xmin)
+-20
+
+# Maximum x (xmax)
+20
+
+# n at left bound (NL)
+0
+
+# n at right bound (NR)
+0
+
+# Evolution time (tmax)
+2
