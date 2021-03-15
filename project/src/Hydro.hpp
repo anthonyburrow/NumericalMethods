@@ -12,6 +12,7 @@ namespace myHydro {
         public:
             const int &nZones;
             const int nBoundaries;
+            int iter;
             const int &nIter;
             const double &dt;
             const double &initRMax;

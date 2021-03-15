@@ -79,20 +79,60 @@ namespace myHydro {
     void calcV(myHydro::Hydro &hydro) {
         double RCube = 0;
         double nextRCube;
-        double V;
+        double nextV;
 
-        for (int i = 0; i < hydro.nBoundaries; i++) {
+        for (int i = 0; i < hydro.nZones; i++) {
             nextRCube = pow(hydro.R[i + 1], 3);
-            V = pi4_3 * (nextRCube - RCube) / hydro.DM[i];
+            nextV = pi4_3 * (nextRCube - RCube) / hydro.DM[i];
             RCube = nextRCube;
 
             hydro.Vht[i] = 0.5 * (V + hydro.V[i]);
-            hydro.V[i] = V;
+
+            if (nextV < V[i]) {
+                hydroQ[i] = calcQ(U[i + 1], U[i], Vht[i]);
+            }
+            else { hydro.Q[i] = 0; }
+
+            hydro.V[i] = nextV;
         }
     }
 
-    void calcTht(myHydro::Hydro &hydro) {
-        
+    void calcQ(double U1, double U0, double Vht) {
+        const double dU = U1 - U0;
+        if (dU < 0) {
+            return 2 * pow(dU, 2) / Vht;
+        }
+        else { return 0; }
+    }
+
+    void calcP(myHydro::Hydro &hydro) {
+        // Pht as a function of Tht, Vht
+
+        // Get P?
+    }
+
+    void calcET(myHydro::Hydro &hydro) {
+        // ETht as a function of Tht, Vht
+    }
+
+    void calcEV(myHydro::Hydro &hydro) {
+        // EVht as a function of Tht, Vht
+    }
+
+    void calcT(myHydro::Hydro &hydro) {
+        double prevT;
+
+        for (int i = 0; i < hydro.nZones; i++) {
+            // Calc T
+            prevT = hydro.T[i];
+
+            
+
+            // Calc Tht
+            // When dt is not constant, this equation needs
+            // to be slightly different
+            hydro.Tht[i] = 1.5 * hydro.T[i] - 0.5 * prevT;
+        }
     }
 
 }

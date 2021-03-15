@@ -17,7 +17,12 @@ namespace myHydro {
     void calcU(myHydro::Hydro &hydro);
 
     void calcV(myHydro::Hydro &hydro);
+    void calcQ(myHydro::Hydro &hydro);
 
-    void calcTht(myHydro::Hydro &hydro);
+    void calcP(myHydro::Hydro &hydro);
+    void calcET(myHydro::Hydro &hydro);
+    void calcEV(myHydro::Hydro &hydro);
+
+    void calcT(myHydro::Hydro &hydro);
 
 }

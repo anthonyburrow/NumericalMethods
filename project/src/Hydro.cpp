@@ -18,6 +18,8 @@ namespace myHydro {
         dt(params.duration / nIter),
         initRMax(params.initRMax)
     {
+        iter = 0;
+
         initVectors();
     }
 
@@ -27,6 +29,14 @@ namespace myHydro {
         myHydro::calcR(*this);
 
         myHydro::calcV(*this);
+
+        myHydro::calcP(*this);
+        myHydro::calcET(*this);
+        myHydro::calcEV(*this);
+
+        myHydro::calcT(*this);
+
+        iter++;
     }
 
     void Hydro::initVectors() {
