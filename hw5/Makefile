@@ -1,6 +1,9 @@
 CXX = g++
 CXXFLAGS =
 
+CC = gcc
+CCFLAGS =
+
 BIN_DIR = ./bin
 SRC_DIR = ./src
 
@@ -52,9 +55,12 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(DIR_GUARD)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/%.h
+	$(CC) $(CCFLAGS) -c $< -o $@
+
 all: directories $(TARGET1) $(TARGET2)
 
-TESTS = $(TARGET1)
+TESTS = $(TARGET2)
 
 test: directories $(TESTS)
 
