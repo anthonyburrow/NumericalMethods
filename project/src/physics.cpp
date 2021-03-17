@@ -86,10 +86,10 @@ namespace myHydro {
             nextV = pi4_3 * (nextRCube - RCube) / hydro.DM[i];
             RCube = nextRCube;
 
-            hydro.Vht[i] = 0.5 * (V + hydro.V[i]);
+            hydro.Vht[i] = 0.5 * (nextV + hydro.V[i]);
 
-            if (nextV < V[i]) {
-                hydroQ[i] = calcQ(U[i + 1], U[i], Vht[i]);
+            if (nextV < hydro.V[i]) {
+                hydro.Q[i] = calcQ(hydro.U[i + 1], hydro.U[i], hydro.Vht[i]);
             }
             else { hydro.Q[i] = 0; }
 
@@ -97,7 +97,7 @@ namespace myHydro {
         }
     }
 
-    void calcQ(double U1, double U0, double Vht) {
+    double calcQ(double U1, double U0, double Vht) {
         const double dU = U1 - U0;
         if (dU < 0) {
             return 2 * pow(dU, 2) / Vht;
