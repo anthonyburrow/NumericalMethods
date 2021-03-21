@@ -21,4 +21,6 @@ namespace myLib {
 
     void writePoint(const std::vector<double> &n, std::ofstream &file);
 
+    void writePoint(const double *n, const int &nPoints, std::ofstream &file);
+
 }

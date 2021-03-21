@@ -102,4 +102,14 @@ namespace myLib {
         file << endl;
     }
 
+    void writePoint(const double *n, const int &nPoints, ofstream &file) {
+        file << setprecision(n_digits);
+
+        for (int i = 0; i < nPoints; i++) {
+            file << n[i] << " ";
+        }
+
+        file << endl;
+    }
+
 }

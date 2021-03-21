@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS =
+CXX = icpc
+CXXFLAGS = -mkl
 
 CC = gcc
 CCFLAGS =
@@ -37,7 +37,7 @@ $(TARGET1): $(OBJ_LIST1)
 NAME2 = myCN
 TARGET2 = $(BIN_DIR)/$(NAME2)
 _SRC1 = $(NAME2)
-_SRC2 = io crankNicholson
+_SRC2 = io crankNicholson tridiag
 SRC2 = $(_SRC1) $(_SRC2)
 
 _OBJ_LIST = $(addsuffix .o, $(SRC2))

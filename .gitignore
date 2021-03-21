@@ -4,6 +4,9 @@
 # Outputs from executables
 */output/*
 
+# Other testing
+*/test/*
+
 # LaTeX
 */doc/*.aux
 */doc/*.log

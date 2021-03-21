@@ -8,14 +8,6 @@
 
 using namespace std;
 
-extern "C" {
-    #include <cblas.h>
-    void cblas_dgemm(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
-                     CBLAS_TRANSPOSE TransB, int M, int N, int K, double alpha,
-                     const double *A, int lda, const double *B, int ldb,
-                     double beta, double *C, int ldc);
-}
-
 double myInitConfig(double x) {
     // Configuration at t = 0
     return exp(-x * x);
@@ -42,7 +34,7 @@ int main(int argc, char* argv[]) {
     cout << "Calculating solution..." << endl;
     
     // Setup output
-    string outFilename = "./output/ftcs.dat";
+    string outFilename = "./output/crankNicholson.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
 
@@ -55,27 +47,29 @@ int main(int argc, char* argv[]) {
         x += dx;
     }
 
-    // myLib::writePoint(n, outFile);
+    myLib::writePoint(n, nBounds, outFile);
 
     // Calculate solution
-    double *A = new double[nBounds * nBounds];
+    double *supA = new double[nBounds - 1];
+    double *diagA = new double[nBounds];
+    double *subA = new double[nBounds - 1];
     double *B = new double[nBounds * nBounds];
     double *b = new double[nBounds];
 
-    myLib::setupCN(A, B, b, r, NL, NR, nBounds);
+    myLib::setupCN(supA, diagA, subA, B, b, r, NL, NR, nBounds);
 
-    myLib::iterCN(n, A, B, b, nBounds);
+    double t = dt;
+    while (t < tmax) {
+        myLib::iterCN(n, supA, diagA, subA, B, b, nBounds);
 
-    // double t = dt;
-    // while (t < tmax) {
-    //     myLib::iterCN(n, A, B, b, nBounds);
-
-    //     myLib::writePoint(n, outFile);
-    //     t += dt;
-    // }
+        myLib::writePoint(n, nBounds, outFile);
+        t += dt;
+    }
 
     delete[] n;
-    delete[] A;
+    delete[] supA;
+    delete[] diagA;
+    delete[] subA;
     delete[] B;
     delete[] b;
 

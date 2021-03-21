@@ -4,6 +4,10 @@ echo "Running FTCS method..."
 ./bin/myFTCS
 echo
 
+echo "Running Crank-Nicholson method..."
+./bin/myCN
+echo
+
 echo "Running plotting script..."
 python3 ./plot.py
 echo
