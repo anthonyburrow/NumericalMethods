@@ -12,8 +12,8 @@ namespace myLib {
                  const double &NR, const int &nPoints) {
         const double diagAval = 2 * (1 + r);
         const double diagB = 2 * (1 - r);
-        const double bStart = 2 * r * NL;   // questionable
-        const double bEnd = 2 * r * NR;   // questionable
+        const double bStart = 2 * r * NL;
+        const double bEnd = 2 * r * NR;
 
         int diag;
         for (int i = 0; i < nPoints; i++) {

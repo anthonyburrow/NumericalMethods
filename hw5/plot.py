@@ -76,4 +76,4 @@ def make_plot(filename):
 
 
 make_plot('ftcs')
-make_plot('crankNicholson')
+make_plot('crankNicolson')

@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "io.hpp"
-#include "crankNicholson.hpp"
+#include "crankNicolson.hpp"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
     cout << "Calculating solution..." << endl;
     
     // Setup output
-    string outFilename = "./output/crankNicholson.dat";
+    string outFilename = "./output/crankNicolson.dat";
     cout << "Writing to " << outFilename << endl;
     ofstream outFile(outFilename);
 

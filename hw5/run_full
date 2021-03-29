@@ -4,7 +4,7 @@ echo "Running FTCS method..."
 ./bin/myFTCS
 echo
 
-echo "Running Crank-Nicholson method..."
+echo "Running Crank-Nicolson method..."
 ./bin/myCN
 echo
 
