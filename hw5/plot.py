@@ -47,7 +47,7 @@ def make_plot(filename):
 
     r = params['D'] * params['dt'] / params['dx']**2
 
-    fn = './output/{fn}-r{r:.3f}.dat'.format(fn = filename, r=r)
+    fn = './output/{fn}-r{r:.3f}.dat'.format(fn=filename, r=r)
     ftcs_data = np.loadtxt(fn, dtype=np.float64).T
 
     fig, ax = plt.subplots(dpi=200)
@@ -69,11 +69,12 @@ def make_plot(filename):
 
     plt.tight_layout()
 
-    fn = './doc/figs/{fn}-r{r:.3f}.pdf'.format(fn = filename, r=r)
+    fn = './doc/figs/{fn}-r{r:.3f}.pdf'.format(fn=filename, r=r)
     fig.savefig(fn, fmt='pdf', dpi=200)
 
     plt.close('all')
 
 
-make_plot('ftcs')
-make_plot('crankNicolson')
+if __name__ == '__main__':
+    make_plot('ftcs')
+    make_plot('crankNicolson')
