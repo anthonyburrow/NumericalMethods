@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <iomanip>
 #include <cmath>
 #include <vector>
 
@@ -34,9 +36,12 @@ int main(int argc, char* argv[]) {
     cout << "Calculating solution..." << endl;
     
     // Setup output
-    string outFilename = "./output/crankNicolson.dat";
-    cout << "Writing to " << outFilename << endl;
-    ofstream outFile(outFilename);
+    stringstream outFilename;
+    outFilename << fixed << setprecision(3)
+                << "./output/crankNicolson-r" << r << ".dat";
+    string outFilenameStr = outFilename.str();
+    cout << "Writing to " << outFilenameStr << endl;
+    ofstream outFile(outFilenameStr);
 
     // Boundary conditions
     double *n = new double[nBounds * nBounds];

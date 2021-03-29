@@ -36,9 +36,6 @@ def get_params(File):
 
 
 def make_plot(filename):
-    fn = './output/{fn}.dat'.format(fn = filename)
-    ftcs_data = np.loadtxt(fn, dtype=np.float64).T
-
     fn = './config/params'
     with open(fn) as File:
         params = get_params(File)
@@ -49,6 +46,9 @@ def make_plot(filename):
     tmax = params['tmax']
 
     r = params['D'] * params['dt'] / params['dx']**2
+
+    fn = './output/{fn}-r{r:.3f}.dat'.format(fn = filename, r=r)
+    ftcs_data = np.loadtxt(fn, dtype=np.float64).T
 
     fig, ax = plt.subplots(dpi=200)
 

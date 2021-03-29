@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <iomanip>
 #include <cmath>
 #include <vector>
 
@@ -34,9 +36,12 @@ int main(int argc, char* argv[]) {
     cout << "Calculating solution..." << endl;
     
     // Setup output
-    string outFilename = "./output/ftcs.dat";
-    cout << "Writing to " << outFilename << endl;
-    ofstream outFile(outFilename);
+    stringstream outFilename;
+    outFilename << fixed << setprecision(3)
+                << "./output/ftcs-r" << r << ".dat";
+    string outFilenameStr = outFilename.str();
+    cout << "Writing to " << outFilenameStr << endl;
+    ofstream outFile(outFilenameStr);
 
     // Boundary conditions
     vector<double> n(nBounds);
