@@ -4,14 +4,51 @@ import matplotlib.colors as col
 plt.switch_backend('agg')
 
 
-xmin = -20
-xmax = 20
-tmin = 0
-tmax = 20
+def get_params(File):
+    params = {}
+
+    count = 0
+    for line in File:
+        if line[0] == '#' or line == '\n':
+            continue
+
+        val = np.float64(line)
+
+        if count == 0:
+            params['D'] = val
+        elif count == 1:
+            params['dt'] = val
+        elif count == 2:
+            params['dx'] = val
+        elif count == 3:
+            params['xmin'] = val
+        elif count == 4:
+            params['xmax'] = val
+        elif count == 5:
+            params['NL'] = val
+        elif count == 6:
+            params['NR'] = val
+        elif count == 7:
+            params['tmax'] = val
+        count += 1
+
+    return params
+
 
 def make_plot(filename):
     fn = './output/{fn}.dat'.format(fn = filename)
     ftcs_data = np.loadtxt(fn, dtype=np.float64).T
+
+    fn = './config/params'
+    with open(fn) as File:
+        params = get_params(File)
+
+    xmin = params['xmin']
+    xmax = params['xmax']
+    tmin = 0
+    tmax = params['tmax']
+
+    r = params['D'] * params['dt'] / params['dx']**2
 
     fig, ax = plt.subplots(dpi=200)
 
@@ -32,7 +69,7 @@ def make_plot(filename):
 
     plt.tight_layout()
 
-    fn = './doc/figs/{fn}.pdf'.format(fn = filename)
+    fn = './doc/figs/{fn}-r{r:.3f}.pdf'.format(fn = filename, r=r)
     fig.savefig(fn, fmt='pdf', dpi=200)
 
     plt.close('all')
