@@ -1,12 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as col
 plt.switch_backend('agg')
 
 
 xmin = -20
 xmax = 20
 tmin = 0
-tmax = 2
+tmax = 20
 
 def make_plot(filename):
     fn = './output/{fn}.dat'.format(fn = filename)
@@ -14,15 +15,18 @@ def make_plot(filename):
 
     fig, ax = plt.subplots(dpi=200)
 
-    scmap = ax.imshow(ftcs_data, extent=(tmin, tmax, xmin, xmax), aspect='auto',
-                      cmap='binary')
+    nmin = 1e-12
+    nmax = 1
+    scmap = ax.imshow(ftcs_data, extent=(tmin, tmax, xmin, xmax),
+                      aspect='auto', cmap='binary',
+                      norm=col.LogNorm(vmin=nmin, vmax=nmax))
 
     fs = 18
     ax.set_xlabel('t', fontsize=fs)
     ax.set_ylabel('x', fontsize=fs)
     ax.tick_params(axis='both', labelsize=fs - 4)
 
-    cb = fig.colorbar(scmap, ticks=[0, 0.2, 0.4, 0.6, 0.8, 1])
+    cb = fig.colorbar(scmap, ticks=[1e-12, 1e-8, 1e-4, 1])
     cb.ax.tick_params(labelsize=fs - 4)
     cb.set_label('n', fontsize=fs)
 

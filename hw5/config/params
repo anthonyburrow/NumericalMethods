@@ -1,4 +1,4 @@
-# Diffusion constant (D)
+# Diffusivity (D)
 1.0
 
 # Time interval (dt)
@@ -20,4 +20,4 @@
 0
 
 # Evolution time (tmax)
-2
+20

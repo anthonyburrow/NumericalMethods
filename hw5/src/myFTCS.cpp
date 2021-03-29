@@ -40,11 +40,9 @@ int main(int argc, char* argv[]) {
 
     // Boundary conditions
     vector<double> n(nBounds);
-    n[0] = NL;
-    n[nBounds - 1] = NR;
 
-    double x = xmin + dx;
-    for (int i = 1; i < nBounds - 1; i++) {
+    double x = xmin;
+    for (int i = 0; i < nBounds; i++) {
         n[i] = myInitConfig(x);
         x += dx;
     }
