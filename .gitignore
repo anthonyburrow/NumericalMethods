@@ -8,12 +8,14 @@
 */test/*
 
 # LaTeX
-*/doc/*.aux
-*/doc/*.log
-*/doc/*.synctex.gz
-*/doc/*.blg
-*/doc/*.bbl
+*.aux
+*.synctex.gz
+*.blg
+*.bbl
 */doc/*.out
+*/doc/*/*.out
+*/doc/*.log
+*/doc/*/*.log
 
 # Compressed files
 *.tar.gz
