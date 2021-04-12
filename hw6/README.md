@@ -17,19 +17,23 @@
 
 ## Compiling the code
 
-
+This program may be compiled from the root directory with `make vtop1`. This
+generates the ".o" file as well as the final executable "./bin/vtop1".
 
 ## Running the code
 
-
+There is a basic Slurm script within "jobs/" called "run_vtop1.slurm". It's
+best to `cd` into "jobs/" first so that the output doesn't fall into the root
+directory. The script may then be run with `sbatch run_vtop1.slurm`.
 
 ## Elements
-
-* `./config/` : Contains parameter information.
 
 * `./bin/` : Created upon compiling manually or with `make`. Contains
              binaries/executables (the programs).
 
-* `./doc/` : Contains results and the description of the assignment.
+* `./doc/` : Contains the description of the assignment.
+
+* `./jobs/` : Contains the script that schedules the program to run using
+              Slurm, as well as the resulting output.
 
 * `./src/` : The source code.
