@@ -3,6 +3,8 @@
 
 # Outputs from executables
 */output/*
+*/jobs/*
+!*/jobs/*.slurm
 
 # Other testing
 */test/*

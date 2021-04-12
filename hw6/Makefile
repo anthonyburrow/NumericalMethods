@@ -1,32 +1,36 @@
-CXX = g++
-CXXFLAGS =
+CC=mpicc
+CXX=mpic++
+FC=mpif90
+FFLAGS=
+FLINKER=mpif90
 
 BIN_DIR = ./bin
 SRC_DIR = ./src
 
-NAME = main
-TARGET = $(BIN_DIR)/$(NAME)
+# Directories
+MAKE_DIRS = $(BIN_DIR)
+MKDIR_P = mkdir -p
 
-SRC = $(NAME) otherdependency1 otherdependency2
-SRC_LIST = $(addprefix $(SRC_DIR)/, $(SRC))
+.PHONY: directories $(MAKE_DIRS)
 
-_OBJ_LIST = $(addsuffix .o, $(SRC))
-OBJ_LIST = $(addprefix $(BIN_DIR)/, $(_OBJ_LIST))
+directories: $(MAKE_DIRS)
 
-# Create executable from objects
-$(TARGET): $(OBJ_LIST)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+$(MAKE_DIRS):
+	$(MKDIR_P) $@
 
-# Because "main" cpp does not have a header file
-$(TARGET).o: $(SRC_DIR)/$(NAME).cpp
-	mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Targets
+TARGET1 = vtop1
+$(TARGET1): directories $(BIN_DIR)/$(TARGET1).o
+	$(FLINKER) $(FFLAGS) -o $(BIN_DIR)/$@ $(BIN_DIR)/$(TARGET1).o
 
-# Compile all other objects objects
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-all: $(TARGET)
+# Recipes
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.f
+	$(FC) $(FFLAGS) -c $< -o $@
+
 
 clean:
-	$(RM) $(BIN_DIR)/*.o $(TARGET)
+	/bin/rm -r $(BIN_DIR)
