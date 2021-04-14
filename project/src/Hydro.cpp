@@ -23,22 +23,6 @@ namespace myHydro {
         initVectors();
     }
 
-    void Hydro::iterate() {
-        myHydro::calcU(*this);
-
-        myHydro::calcR(*this);
-
-        myHydro::calcV(*this);
-
-        myHydro::calcP(*this);
-        myHydro::calcET(*this);
-        myHydro::calcEV(*this);
-
-        myHydro::calcT(*this);
-
-        iter++;
-    }
-
     void Hydro::initVectors() {
         R.reserve(nBoundaries);
         myHydro::initR(*this);
@@ -50,6 +34,7 @@ namespace myHydro {
         myHydro::initP(*this);
 
         V.reserve(nZones);
+        Vprev.reserve(nZones);
         Vht.reserve(nZones);
         myHydro::initV(*this);
 
@@ -57,17 +42,43 @@ namespace myHydro {
         Tht.reserve(nZones);
         myHydro::initT(*this);
 
+        // Should not change in Lagrangian frame
         DM.reserve(nZones);
         myHydro::calcDM(*this);
 
+        // Should not change in Lagrangian frame
         DMb.reserve(nBoundaries);
         myHydro::calcDMb(*this);
 
+        // Should not change in Lagrangian frame
         XM.reserve(nBoundaries);
         myHydro::calcXM(*this);
 
         Q.reserve(nZones);
-        myHydro::initQ(*this);
+        myHydro::calcQ(*this);
+
+    }
+
+    void Hydro::iterate() {
+        myHydro::calcU(*this);
+
+        myHydro::calcR(*this);
+
+        myHydro::calcV(*this);
+
+        myHydro::calcQ(*this);
+        myHydro::calcPht(*this);
+        myHydro::calcET(*this);
+        myHydro::calcEV(*this);
+
+        myHydro::calcAK(*this);
+        myHydro::calcAL(*this);
+        myHydro::calcSdot(*this);
+
+        myHydro::calcT(*this);
+        myHydro::calcP(*this);
+
+        iter++;
     }
 
 }

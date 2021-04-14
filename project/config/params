@@ -1,5 +1,5 @@
 # Number of zones
 256
 
-#  Initial radius of star
-100
+#  Initial radius of star (cm)
+1e10

@@ -10,7 +10,7 @@ namespace myHydro {
         // Start with uniform spacial boundaries
         const double dR = hydro.initRMax / hydro.nZones;
 
-        hydro.R[0] = 0;   // BC
+        hydro.R[0] = 0;   // BC for all time
 
         for (int i = 1; i < hydro.nBoundaries; i++) {
             hydro.R[i] = hydro.R[i - 1] + dR;
@@ -18,9 +18,9 @@ namespace myHydro {
     }
 
     void initU(myHydro::Hydro &hydro) {
-        // Start with zero velocities
-        hydro.U[0] = 0;   // BC
+        hydro.U[0] = 0;   // BC for all time
 
+        // Start with zero velocities
         for (int i = 1; i < hydro.nBoundaries; i++) {
             hydro.U[i] = 0;
         }
@@ -38,10 +38,6 @@ namespace myHydro {
         // stuff here
 
         hydro.Tht = hydro.T;
-    }
-
-    void initQ(myHydro::Hydro &hydro) {
-
     }
 
 }
