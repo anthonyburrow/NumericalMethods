@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1}
+\usepackage{indentfirst}
+
+\usepackage{amsmath, amssymb}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{./figs/}}
+
+\usepackage{natbib}
+\bibliographystyle{aasjournal}
+
+\begin{document}
+
+\begin{center}\begin{LARGE}
+\textbf{Final Project Progress Report \#1}
+\end{LARGE}\end{center}
+
+
+\section*{}
+
+Our project is to develop a 1D hydrocode that functions to model a high-mass
+($10\ M_\odot$) star that has undergone a core-collapse event and subsequent
+shock that ejects its outermost layers. We are effectively following the
+numerical method given in \citet{arnett66} to calculate temperatures,
+pressures, densities, etc. using equations of mass conservation, momentum
+conservation, and energy conservation, as well as an equation of state.
+
+So far, we have set up the code to handle most of the hydrodynamical
+functionality. This means writing all the difference equations for all of the
+mechanical properties (zone velocities, specific volumes, etc.) as well as some
+others (e.g. temperature).
+
+Some functionalities still needed are those that are related to the
+equation of state (pressure and energy). This is a bit more difficult to decide
+on due to the nature of the project, but after looking through and
+understanding the paper more, we may assume that the pressure can be split into
+that due to nucleons (as free Fermi particles), electrons (relativistic Fermi
+particles), and radiation. Using the pressure and energy equations of state
+from \citet{arnett66}, most of what is left in the code is to actually
+calculate the pressure and evalutate $\partial E / \partial T$ and
+$\partial E / \partial V$, which is still a bit unclear for now. If this proves
+too time-consuming or difficult, more simplistic equations of state could also
+be used (e.g. just the relativistic degenerate Fermi gas).
+
+There are also the radiative terms to calculate, such as energy generation
+rate ($\dot{s}$ due to neutrino emission, etc.) and opacities. This will
+require a lot more looking into.
+
+After these have all been established, boundary conditions must be set. The
+boundary conditions we still need to apply are the initial temperature,
+pressure, and density profiles. These profiles will possibly just be some
+power-law relation with an initial core value.
+
+Ultimately, the project is going well in terms of writing the code. However, on
+my end I am a bit stuck with some of the physical mechanisms involved in a
+core-collapse event, and what I should actually be including in the code.
+Unfortunately I do not yet have plots to show, however to make things more
+clear when writing this code, my next step will probably be to set it up to run
+and actually generate plots, regardless of what the plots look like.
+
+\vspace{5mm}
+
+Our current progress may be found at the following GitHub link:
+\url{https://github.com/anthonyburrow/Hydro1D}
+
+\bibliography{progress_report1}
+
+\end{document}
